@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Visitors</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="/styles.css">
+	<style>
+		#input-form input {
+    	width: calc(100% + 215px);
+    	padding: 10px;
+    	border: 1.5px solid #005778;
+    	border-radius: 5px;
+    	font-size: 14px;
+    	margin-bottom: 15px;
+    	display: block;
+	}
+	#input-form select {
+    	width: calc(100% - 11px);
+    	padding: 10px;
+    	border: 1.5px solid #005778;
+    	border-radius: 5px;
+    	font-size: 14px;
+    	margin-bottom: 15px;
+    	display: block;
+    margin-left: 8px;
+	}
+</style>
+</head>
+
+<body>
+<div class="header-logo">Visitors</div>
+<!-- Centered container for the form -->
+<div class="centered-form">
+	<form th:action="@{/visitors/edit}" method="post" id="input-form">
+	<input type="hidden" name="id" th:value="${visitor.id}" />
+		<div><label for="firstName"> First Name : <input type="text" name="firstName" id="firstName" th:value="${visitor.firstName}" /> </label></div>
+		<div><label> Middle Name : <input type="text" name="middleName" th:value="${visitor.middleName}"/> </label></div>
+		<div><label> Last Name : <input type="text" name="lastName" th:value="${visitor.lastName}"/> </label></div>
+		<div><label> Phone number : <input type="text" name="phoneNumber" th:value="${visitor.phoneNumber}"/> </label></div>
+		<div><label> Birth Date : <input type="text" name="birthdate" th:value="${#dates.format(visitor.birthDate, 'dd/MM/yyyy')}"/> </label></div>
+		<div><label> Gender :</label></div>
+		<select name="genderId" id="genderId">
+			<option value="0">select gender</option>
+			<option th:selected="${visitor.genderId==gender.id}" th:each="gender : ${genders}" th:text="${gender.name}" th:value="${gender.id}"></option>
+		</select>
+		<div><label> Email Address : <input type="text" name="email" th:value="${visitor.email}"/> </label></div>
+		<div><label> Password: <input type="password" name="password" th:value="${visitor.password}"/> </label></div>
+		<div><input type="submit" value="Save" /></div>
+	</form>
+</div>>
+</body>
+</html>

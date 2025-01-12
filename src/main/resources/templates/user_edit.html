@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Visitors</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/styles.css">
+    <style></style>
+</head>
+
+<body>
+<div class="header-logo">Visitors</div>
+<!-- Centered container for the form -->
+<div class="centered-form">
+    <form th:action="@{/users/edit}" method="post" id="input-form">
+        <input type="hidden" name="id" th:value="${user.id}"/>
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" th:value="${user.firstName}"/>
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" th:value="${user.lastName}"/>
+        </div>
+        <div>
+            <label for="roleId">Role:</label>
+            <select name="roleId" id="roleId">
+                <option value="0">Select role</option>
+                <option th:selected="${user.roleId==role.id}" th:each="role : ${roles}" th:text="${role.name}"
+                        th:value="${role.id}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="birthDate">Birth Date:</label>
+            <input type="text" name="birthDate" id="birthDate" th:value="${#dates.format(user.birthDate, 'dd/MM/yyyy')}"/>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" th:value="${user.email}"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" th:value="${user.password}"/>
+        </div>
+        <div>
+            <input type="submit" value="Save"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

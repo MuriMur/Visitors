@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Visitors</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="header-logo">Visitors</div>
+	<div class="page-title">Roles</div>
+	<div th:if="${ not#lists.isEmpty(roles)}">
+		<table class="table">
+			<tr>
+				<th>id</th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+			<tr th:each="role : ${roles}">
+				<td th:text="${role.id}"></td>
+				<td th:text="${role.name}"></td>
+				<td th:text="${role.description}"></td>
+				<td>
+					<p><a th:href="@{/roles/load/}+${role.id}">edit</a></p>
+				</td>
+				<td>
+					<p><a th:href="@{/roles/delete/}+${role.id}">delete</a></p>
+				</td>
+			</tr>
+			<table>
+	</div>
+	<p>Click <a th:href="@{/roles/load/0}">here</a> to add new role.</p>
+	<p>Click <a th:href="@{/}">here</a> back.</p>
+</body>
+
+</html>

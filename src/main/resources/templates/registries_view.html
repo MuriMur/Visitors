@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Visitors</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+.th-title {
+	width: 100px;
+	font-size: 12pt;
+	border: 1px;
+}
+    </style>
+</head>
+<body>
+<div class="header-logo">Visitors</div>
+<div class="page-title">Visits</div>
+
+<div th:if="${ not#lists.isEmpty(registries)}">
+    <table>
+        <tr>
+            <th class="th-title">id</th>
+            <th class="th-title">Visitor Id</th>
+            <th class="th-title">User Id</th>
+            <th class="th-title">Location</th>
+            <th class="th-title">Status</th>
+            <th class="th-title">Date</th>
+            <th class="th-title">Appointment</th>
+            <th class="th-title">Order</th>
+
+        </tr>
+        <tr th:each="registry : ${registries}">
+            <td th:text="${registry.id}"></td>
+            <td
+                    th:text="${visitorService.getVisitorById(registry.visitorId).email}">
+            </td>
+            <td th:text="${userService.getUserById(registry.userId).email}">
+            </td>
+            <td th:text="${registry.location}"></td>
+            <td th:text="${registry.statusLabel}"></td>
+            <td th:text="${#dates.format(registry.date, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${appointmentService.getAppointmentById(registry.appointmentId).getDescription}">
+            <td th:text="${registry.order}"></td>
+            </td>
+            <td>
+                <p>
+                    <a th:href="@{/registries/load/}+${registry.id}">edit</a>
+                </p>
+            </td>
+            <td>
+                <p>
+                    <a th:href="@{/registries/delete/}+${registry.id}">delete</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<p>
+    Click <a th:href="@{/registries/load/0}">here</a> to add new
+    Visit.
+</p>
+<p>
+    Click <a th:href="@{/}">here</a> back.
+</p>
+</body>
+
+</html>

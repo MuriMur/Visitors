@@ -1,0 +1,4 @@
+visitors\model\User.class
+visitors\VisitorsApplication.class
+visitors\model\Role.class
+visitors\model\Visitor.class

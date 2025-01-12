@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Visitors</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="/styles.css">
+	<style>
+		#input-form input {
+        width: calc(100% + 216px);
+        padding: 10px;
+        border: 1.5px solid #005778;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        display: block;
+    }
+	</style>
+</head>
+
+<body>
+	<div class="header-logo">Visitors</div>
+	<div class="centered-form">
+		<form th:action="@{/roles/edit}" method="post" id="input-form">
+			<input type="hidden" name="id" th:value="${role.id}" />
+			<div><label> Role Name : <input type="text" name="name" th:value="${role.name}" /> </label></div>
+			<div><label> Description : <input type="text" name="description" th:value="${role.description}" /> </label></div>
+			<div><input type="submit" value="Save" /></div>
+		</form>
+	</div>>
+</body>
+</html>

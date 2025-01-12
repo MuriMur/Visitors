@@ -1,0 +1,225 @@
+.header-logo {
+	height: 90px;
+    background-color: #38448d;
+    font-size: 80px;
+    text-align: center;
+    color: yellow;
+}
+
+.button-bar {
+	height: 30px;
+}
+
+/* Centering the form and enhancing its design */
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 90px); /* Deducting the height of the header */
+        }
+
+        #input-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px; /* Adjust as needed */
+            text-align: left;
+        }
+
+        #input-form label {
+            color: #38448d;
+            font-weight: bold;
+            padding-left: 10px;
+            width: 150px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #input-form input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1.5px solid #005778;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #input-form select {
+            width: calc(100% + 2px);
+            padding: 10px;
+            border: 1.5px solid #005778;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #input-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        #input-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+
+
+.login-button {
+  position: absolute; /* Or 'fixed' if you want it to stay in place during scrolling */
+  top: 10px; /* Adjust the distance from the top */
+  right: 10px;
+  align: right/* Adjust the distance from the right */
+  background-color: #4CAF50; /* Green background */
+  padding: 10px 15px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+.login-button a {
+  color: white; /* White text */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Font size for the link */
+  font-family: Arial, sans-serif; /* Optional font styling */
+}
+
+.login-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Optional scaling effect on hover */
+}
+
+.login-btn {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px 20px; /* Add some padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make it inline-block */
+  font-size: 16px; /* Set font size */
+  margin: 4px 2px; /* Add some margin */
+  cursor: pointer; /* Pointer/hand icon */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.login-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.login-btn:active {
+  background-color: #3e8e41; /* Even darker green when clicked */
+  transform: scale(1); /* Return to original size when clicked */
+}
+
+.button {
+	margin-right: 10px;
+	padding-top: 17px;
+	background-color: #0008ff2b;
+	height: 50px !important;
+	font-size: 24px;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+	width: 200px;
+	display: inline-block;
+	border-radius: 10px;
+}
+.page-title{
+	display: block;
+    font-size: 2em;
+    padding-left: 26px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.page-title{
+	display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	/*background: linear-gradient(45deg, #49a09d, #5f2c82);
+	*/
+	background-color: #bceaff;
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+table {
+	width: 1000px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: black;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th {
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}

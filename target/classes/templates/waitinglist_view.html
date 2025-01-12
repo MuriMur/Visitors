@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Visitors</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+.th-title {
+    width: 100px;
+    color: white;
+    background: #38448d;
+    border: 1px;
+}
+    </style>
+    <meta http-equiv="refresh" content="10">
+</head>
+<body>
+<div class="header-logo">Visitors</div>
+<div class="page-title">Waiting List</div>
+
+<div th:if="${ not#lists.isEmpty(registries)}">
+    <table>
+        <tr>
+            <th class="th-title">id</th>
+            <th class="th-title">First Name</th>
+            <th class="th-title">Last Name</th>
+            <th class="th-title">Email</th>
+            <th class="th-title">Location</th>
+            <th class="th-title">Status</th>
+            <th class="th-title">Date</th>
+            <th class="th-title">Description</th>
+            <th class="th-title">Order</th>
+            <th class="th-title" sec:authorize="${hasRole('Personnel')}">Call</th>
+        </tr>
+        <tr th:each="registry : ${registries}">
+            <td th:text="${registry.id}"></td>
+            <td th:text="${visitorService.getVisitorById(registry.visitorId).firstName}"></td>
+            <td th:text="${visitorService.getVisitorById(registry.visitorId).lastName}"></td>
+            <td th:text="${userService.getUserById(registry.userId).email}"></td>
+            <td th:text="${registry.location}"></td>
+            <td th:text="${registry.statusLabel}"></td>
+            <td th:text="${#dates.format(registry.date, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${appointmentService.getAppointmentById(registry.appointmentId).getDescription}">
+            <td th:text="${registry.order}"></td>
+            <td>
+                <form method="post" th:action="@{/callPatient}">
+                    <input type="hidden" id="visitorId" name="visitorId" th:value="${registry.visitorId}">
+                    <input type="hidden" id="appointmentId" name="appointmentId" th:value="${registry.appointmentId}">
+                    <input type="hidden" id="registryId" name="registryId" th:value="${registry.id}">
+                    <input type="submit" value="Call" sec:authorize="${hasRole('Personnel')}">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<p>Click <a th:href="@{/}">here</a> to back.</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Visitors</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="header-logo">Visitors</div>
+	<div class="page-title">Visitors</div>
+
+	<div th:if="${ not#lists.isEmpty(visitors)}">
+		<table>
+			<tr>
+				<th>id</th>
+				<th>First Name</th>
+				<th>Middle Name</th>
+				<th>Last Name</th>
+				<th>Phone Number</th>
+				<th>Birth Date</th>
+				<th>Email</th>
+			</tr>
+			<tr th:each="visitor : ${visitors}">
+				<td th:text="${visitor.id}"></td>
+				<td th:text="${visitor.firstName}"></td>
+				<td th:text="${visitor.middleName}"></td>
+				<td th:text="${visitor.lastName}"></td>
+				<td th:text="${visitor.phoneNumber}"></td>
+				<td th:text="${#dates.format(visitor.birthDate, 'dd/MM/yyyy')}"></td>
+				<td th:text="${visitor.email}"></td>
+				<td>
+					<p><a th:href="@{/visitors/appointments/load/}+${visitor.id}">Appointments</a></p>
+				</td>
+				<td>
+					<p><a th:href="@{/visitors/load/}+${visitor.id}">Edit</a></p>
+				</td>
+				<td>
+					<p><a th:href="@{/visitors/delete/}+${visitor.id}">Delete</a></p>
+				</td>
+			</tr>
+			<table>
+	</div>
+	<p>Click <a th:href="@{/visitors/load/0}">here</a> to add new visitor.</p>
+	<p>Click <a th:href="@{/}">here</a> back.</p>
+</body>
+
+</html>

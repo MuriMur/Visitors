@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Visitors</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="/styles.css">
+	<style></style>
+	<script type="text/javascript">
+	function submitVisitor(visitorSelect) {
+		var d = document.getElementById("selectedVisitorId");
+		d.value = visitorSelect.value;
+		document.getElementById("formVisitors").submit();
+	}
+	</script>
+</head>
+
+<body>
+<div class="header-logo">Visitors</div>
+	<form  id="formVisitors" th:name="formVisitors" th:action="@{/registries/visitor}" method="post">
+		<input type="hidden" id="selectedVisitorId" name="selectedVisitorId" value="${selectedVisitorId}">
+		<input type="hidden" id="selectedRegistryId" name="selectedRegistryId" th:value="${registry.id}" />
+	</form>
+<!-- Centered container for the form -->
+<div class="centered-form">
+<form th:action="@{/registries/edit}" method="post" id="input-form">
+		<input type="hidden" name="id" th:value="${registry.id}" />
+		<div><label for="visitorId"> Visitor :</label></div>
+		<select name="visitorId" id="visitorId" onchange="submitVisitor(this)">
+			<option value="0">select visitor</option>
+			<option th:selected="${selectedVisitorId==visitor.id}" th:each="visitor : ${visitors}" th:text="${visitor.email}"
+					th:value="${visitor.id}"></option>
+		</select>
+		<div><label for="appointmentId"> Appointment :</label></div>
+		<select name="appointmentId" id="appointmentId">
+			<option value="0">select appointment</option>
+			<option th:selected="${registry.appointmentId==appointment.id}" th:each="appointment : ${appointments}" th:text="${appointment.label}"
+					th:value="${appointment.id}"></option>
+		</select>
+		<div><input type="submit" value="Save" /></div>
+	</form>
+	</div>>
+</body>
+</html>
