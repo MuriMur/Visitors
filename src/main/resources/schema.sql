@@ -13,7 +13,6 @@ CREATE TABLE user_ (
   KEY fk_role_idx (role_id)
 );
 
-use visitors;
 CREATE TABLE visitors (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   first_name varchar(30) DEFAULT NULL,
