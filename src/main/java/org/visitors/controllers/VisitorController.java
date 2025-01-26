@@ -65,6 +65,7 @@ public class VisitorController {
         return "visitor_edit";
     }
 
+    //TODO
     @GetMapping("/appointments/load/{visitorId}")
     public String loadVisitorAppointments(@PathVariable Long visitorId, Model model) {
         List<Appointment> visitorAppointments = appointmentService.getAppointmentsByVisitorId(visitorId);

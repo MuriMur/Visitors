@@ -34,8 +34,6 @@ public class WaitingListController {
 
 	@GetMapping
 	public String listAllRegistries(Model model) {
-//		List<Registry> registriesList = new ArrayList<>();
-//		Supplier<Stream<Registry>> streamSupplier = registryService.listAllRegistries();
 		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
 		model.addAttribute("visitorService", visitorService);
 		model.addAttribute("userService", userService);

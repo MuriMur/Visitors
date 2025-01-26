@@ -38,7 +38,7 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/users/delete/{userId}/**").hasAnyRole("Registrator", "System Administrator")
 
                                 .requestMatchers("/visitors").permitAll()
-                                .requestMatchers("/visitors/appointments/load/**").permitAll()
+                                .requestMatchers("/visitors/appointments/load/{visitorId}").permitAll()
                                 .requestMatchers("/visitors/edit").permitAll()
                                 .requestMatchers("/visitors/load/{visitorId}/**").permitAll()
                                 .requestMatchers("/visitors/delete/{visitorId}/**").permitAll()
@@ -90,8 +90,7 @@ public class SpringSecurityConfig {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
+        auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
     
