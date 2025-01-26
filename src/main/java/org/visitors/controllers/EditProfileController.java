@@ -17,6 +17,8 @@ import org.visitors.services.RegistryService;
 import org.visitors.services.UserService;
 import org.visitors.services.VisitorService;
 
+import java.util.Base64;
+
 @RequestMapping("/editprofile")
 @Controller
 public class EditProfileController {
@@ -29,16 +31,13 @@ public class EditProfileController {
 	private UserService userService;
 	@Autowired
 	private VisitorService visitorService;
-	@Autowired
-	private AppointmentsOrderService appointmentsOrderService;
 	
-	public EditProfileController(RegistryService registryService , AppointmentService appointmentService, UserService userService,  VisitorService visitorService, AppointmentsOrderService appointmentsOrderService) {
+	public EditProfileController(RegistryService registryService , AppointmentService appointmentService, UserService userService,  VisitorService visitorService) {
 		super();
 		this.registryService = registryService;
 		this.appointmentService = appointmentService;
 		this.userService = userService;
 		this.visitorService = visitorService;
-		this.appointmentsOrderService = appointmentsOrderService;
 	}
 	
 	@GetMapping
@@ -54,6 +53,8 @@ public class EditProfileController {
 	
 	@PostMapping(value = "/edit", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public RedirectView editProfile(User user, Model model) {
+		user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
+		userService.save(user);
 		System.out.println("successfully Saved! ");
 		return new RedirectView("/users");
 	}
