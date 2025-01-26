@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Visitors</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .th-title {
+       width: 100px;
+       font-size: 12pt;
+       border: 1px;
+     }
+
+  </style>
+</head>
+<body>
+<div class="header-logo">Visitors</div>
+<div class="page-title">Appointments</div>
+
+<div th:if="${ not#lists.isEmpty(visitorAppointments)}">
+  <table>
+    <tr>
+      <th class="th-title">id</th>
+      <th class="th-title">Visitor</th>
+      <th class="th-title">Date</th>
+      <th class="th-title">User</th>
+      <th class="th-title">Description</th>
+    </tr>
+    <tr th:each="appointment : ${visitorAppointments}">
+      <td th:text="${appointment.appointmentId}"></td>
+      <td th:text="${visitorService.getVisitorById(appointment.visitorId).email}">
+      </td>
+      <td th:text="${#dates.format(appointment.date, 'dd/MM/yyyy HH:mm')}"></td>
+      <td th:text="${userService.getUserById(appointment.userId).email}">
+      </td>
+      <td th:text="${appointment.description}"></td>
+      <td>
+        <p><a th:href="@{/appointments/load/}+${appointment.appointmentId}">edit</a></p>
+      </td>
+      <td>
+        <p><a th:href="@{/appointments/delete/}+${appointment.appointmentId}">delete</a></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Click <a th:href="@{/appointments/load/0}">here</a> to add new appointment.</p>
+<p>Click <a th:href="@{/}">here</a> back.</p>
+</body>
+
+</html>
