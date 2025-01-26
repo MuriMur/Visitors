@@ -13,6 +13,14 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private RoleService roleService;
+
+	public UserService(UserRepository userRepo, RoleService roleService) {
+		super();
+		this.userRepo = userRepo;
+		this.roleService = roleService;
+	}
 
 	public List<User> listAllUsers() {
 		return userRepo.findAll();
@@ -20,11 +28,6 @@ public class UserService {
 
 	public User getUserById(Long id) {
 		return userRepo.getReferenceById(id);
-	}
-
-	public UserService(UserRepository userRepo) {
-		super();
-		this.userRepo = userRepo;
 	}
 
 	public void userDelete(Long id) {
@@ -42,6 +45,7 @@ public class UserService {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setRoleId(roleId);
+		user.getRoles().add(roleService.getRoleById(roleId));
 		user.setBirthDate(birthDate);
 		user.setEmail(email);
 		user.setPassword(password);
