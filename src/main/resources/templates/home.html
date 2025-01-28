@@ -30,7 +30,7 @@
 		<div class="button" id="registries-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
 			<a th:href="@{/registries}">Registries</a>
 		</div>
-		<div class="button" id="waitinglist-button" sec:authorize="${! hasRole('Monitor')}">
+		<div class="button" id="waitinglist-button">
 			<a th:href="@{/waitinglist}">Waiting List</a>
 		</div>
 		<div class="button" id="profiledit-button" sec:authorize="${hasAnyRole('System Administrator')}">
