@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.visitors.models_and_repositories.appointment.Appointment;
 import org.visitors.models_and_repositories.appointment.AppointmentRepository;
+import org.visitors.models_and_repositories.user.User;
 
 @Service
 public class AppointmentService {
@@ -43,7 +44,12 @@ public class AppointmentService {
 	}
 	
 	public void appointmentEdit(Long id, long visitorId,  Date date, long userId , String description) {
-		Appointment appointment = appointmentRepo.getReferenceById(id);
+		Appointment appointment;
+		if (id == 0){
+			appointment = new Appointment();
+		}else {
+			appointment = appointmentRepo.getReferenceById(id);
+		}
 		appointment.setVisitorId(visitorId);
 		appointment.setDate(date);
 		appointment.setUserId(userId);

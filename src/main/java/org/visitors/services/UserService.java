@@ -61,7 +61,7 @@ public class UserService {
 	}
 
 	public User createUser() {
-		return new User(0L, "", "", 0l, null, "", "");
+		return new User(0L, "", "", 0L, null, "", "");
 	}
 
 }

@@ -1,6 +1,8 @@
 package org.visitors.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 import org.visitors.models_and_repositories.appointment.Appointment;
 import org.visitors.services.AppointmentService;
 import org.visitors.services.UserService;
@@ -8,11 +10,9 @@ import org.visitors.services.VisitorService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Date;
 
 @RequestMapping("/appointments")
 @Controller
@@ -66,9 +66,14 @@ public class AppointmentController {
 	}
 	
 	@PostMapping(value = "/edit", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public RedirectView editAppointment(Appointment newAppointment, Model model) {
-		appointmentService.save(newAppointment);
-		System.out.println("successfully Saved! " + newAppointment);
+	public RedirectView editAppointment(@RequestParam Long id,
+										@RequestParam Long visitorId,
+										@RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") Date date,
+										@RequestParam Long userId,
+										@RequestParam String description,
+										Model model) {
+		appointmentService.appointmentEdit(id, visitorId, date, userId, description);
+		System.out.println("successfully Saved! ");
 		return new RedirectView("/appointments");
 	}
 	
