@@ -43,10 +43,10 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/visitors/load/{visitorId}/**").permitAll()
                                 .requestMatchers("/visitors/delete/{visitorId}/**").permitAll()
 
-                                .requestMatchers("/roles").hasAnyRole("Registrator", "System Administrator")
-                                .requestMatchers("/roles/edit").hasAnyRole("Registrator", "System Administrator")
-                                .requestMatchers("/roles/load/{roleId}/**").hasAnyRole("Registrator", "System Administrator")
-                                .requestMatchers("/roles/delete/{roleId}/**").hasAnyRole("Registrator", "System Administrator")
+                                .requestMatchers("/roles").hasAnyRole( "System Administrator")
+                                .requestMatchers("/roles/edit").hasAnyRole( "System Administrator")
+                                .requestMatchers("/roles/load/{roleId}/**").hasAnyRole( "System Administrator")
+                                .requestMatchers("/roles/delete/{roleId}/**").hasAnyRole( "System Administrator")
 
                                 .requestMatchers("/appointments").hasAnyRole("Personnel", "Registrator", "System Administrator")
                                 .requestMatchers("/appointments/edit").hasAnyRole("Personnel", "Registrator", "System Administrator")
@@ -59,7 +59,7 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/registries/visitor/**").hasAnyRole("Registrator", "System Administrator")
                                 .requestMatchers("/registries/delete/{registrieId}/**").hasAnyRole("Registrator", "System Administrator")
                                 
-                                .requestMatchers("/waitinglist").hasAnyRole("Personnel", "System Administrator", "Monitor", "Visitor")
+                                .requestMatchers("/waitinglist").permitAll()
                                 .requestMatchers("/callPatient").hasAnyRole("Personnel", "System Administrator")
                                 .requestMatchers("/callPatient/**").hasAnyRole("Personnel", "System Administrator")
                                 .requestMatchers("/checkPatient").hasAnyRole("Personnel", "System Administrator")
