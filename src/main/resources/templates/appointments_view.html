@@ -37,10 +37,10 @@
 				</td>
 				<td th:text="${appointment.description}"></td>
 				<td>
-					<p><a th:href="@{/appointments/load/}+${appointment.appointmentId}">edit</a></p>
+					<p><a th:href="@{/appointments/load/}+${appointment.appointmentId}" sec:authorize="${hasRole('Registrator')}">edit</a></p>
 				</td>
 				<td>
-					<p><a th:href="@{/appointments/delete/}+${appointment.appointmentId}">delete</a></p>
+					<p><a th:href="@{/appointments/delete/}+${appointment.appointmentId}" sec:authorize="${hasRole('Registrator')}">delete</a></p>
 				</td>
 			</tr>
 			</table>

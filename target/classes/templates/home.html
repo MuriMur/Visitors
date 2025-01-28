@@ -15,7 +15,7 @@
 		<a th:href="@{/logout}">Log out</a>
 	</div>
 	<div id="button-bar" class="button-bar">
-		<div class="button" id="roles-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
+		<div class="button" id="roles-button" sec:authorize="${hasAnyRole('System Administrator')}">
 			<a th:href="@{/roles}">Roles</a>
 		</div>
 		<div class="button" id="visitors-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
@@ -24,16 +24,16 @@
 		<div class="button" id="users-button" sec:authorize="${hasRole('System Administrator')}">
 			<a th:href="@{/users}">Users</a>
 		</div>
-		<div class="button" id="appointments-button" sec:authorize="${hasAnyRole('System Administrator', 'Personnel')}">
+		<div class="button" id="appointments-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
 			<a th:href="@{/appointments}">Appointments</a>
 		</div>
 		<div class="button" id="registries-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
 			<a th:href="@{/registries}">Registries</a>
 		</div>
-		<div class="button" id="waitinglist-button" sec:authorize="${! hasRole('Monitor')}">
+		<div class="button" id="waitinglist-button">
 			<a th:href="@{/waitinglist}">Waiting List</a>
 		</div>
-		<div class="button" id="profiledit-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
+		<div class="button" id="profiledit-button" sec:authorize="${hasAnyRole('System Administrator')}">
 			<a th:href="@{/editprofile}">Profile Edit</a>
 		</div>
 	</div>
