@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.visitors.models_and_repositories.user.User;
 import org.visitors.models_and_repositories.visitor.Visitor;
 import org.visitors.models_and_repositories.visitor.VisitorRepository;
 
@@ -33,7 +34,12 @@ public class VisitorService {
 
 	public void visitorEdit(Long id, String firstName, String lastName, String middleName, String password, String email,
 							String phoneNumber, Date birthDate, long genderId) {
-		Visitor visitor = visitorRepo.getReferenceById(id);
+		Visitor visitor;
+		if (id == 0){
+			visitor = new Visitor();
+		}else {
+			visitor = visitorRepo.getReferenceById(id);
+		}
 		visitor.setFirstName(firstName);
 		visitor.setLastName(lastName);
 		visitor.setMiddleName(middleName);
