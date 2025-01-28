@@ -24,13 +24,13 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment> getAppointmentsByVisitorId(Long id) {
-		List <Appointment> appointmentsByVisitor = new ArrayList<>();
+		List <Appointment> visitorAppointments = new ArrayList<>();
 		for (Appointment appointment : listAllAppointments()) {
 			if(appointment.getVisitorId() == id) {
-				appointmentsByVisitor.add(appointment);
+				visitorAppointments.add(appointment);
 			}
 		}
-		return appointmentsByVisitor;
+		return visitorAppointments;
 	}
 
 	public AppointmentService(AppointmentRepository appointmentRepo) {
