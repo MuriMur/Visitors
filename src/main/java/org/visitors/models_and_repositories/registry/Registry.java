@@ -31,8 +31,7 @@ public class Registry {
 	private long appointmentId;
 	@Column(name = "order_")
 	private String order;
-	
-	
+
 	public String getStatusLabel() {
 		switch (status) {
 		case STATUS_INACTIVE: {

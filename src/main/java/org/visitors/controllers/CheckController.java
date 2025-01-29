@@ -79,4 +79,13 @@ public class CheckController {
 		model.addAttribute("appointmentService", appointmentService);
 		return "waitinglist_view";
 	}
+
+	@GetMapping("/finishCheck")
+	public String listAllRegistriesAfterFinishCheck(Model model) {
+		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
+		model.addAttribute("visitorService", visitorService);
+		model.addAttribute("userService", userService);
+		model.addAttribute("appointmentService", appointmentService);
+		return "waitinglist_view";
+	}
 }

@@ -24,7 +24,7 @@
 		<div class="button" id="users-button" sec:authorize="${hasRole('System Administrator')}">
 			<a th:href="@{/users}">Users</a>
 		</div>
-		<div class="button" id="appointments-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
+		<div class="button" id="appointments-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator', 'Personnel')}">
 			<a th:href="@{/appointments}">Appointments</a>
 		</div>
 		<div class="button" id="registries-button" sec:authorize="${hasAnyRole('System Administrator', 'Registrator')}">
