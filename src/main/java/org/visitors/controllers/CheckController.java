@@ -32,19 +32,23 @@ public class CheckController {
 	@PostMapping("/startCheck")
 	public String startCheck(@RequestParam(name = "visitorId") long visitorId,
 							 @RequestParam(name = "appointmentId") long appointmentId,
+							 @RequestParam(name = "registryId") long registryId,
 							 Model model) {
-		Registry registry = registryService.getRegistryById(visitorId);
+		Registry registry = registryService.getRegistryById(registryId);
 		registry.setStatus(3);
 		registryService.save(registry);
 		model.addAttribute("visitor", registryService.getVisitorById(visitorId));
 		model.addAttribute("appointment", registryService.getAppointmentById(appointmentId));
-		model.addAttribute("registry", registry);
+		model.addAttribute("registry", registryService.getRegistryById(registryId));
 		return "check_view";
 	}
 
 	@PostMapping("/returnToWaitingList")
-	public String returnToWaitingList(@RequestParam(name = "visitorId") long visitorId, @RequestParam(name = "appointmentId") long appointmentId, Model model) {
-		Registry registry = registryService.getRegistryById(visitorId);
+	public String returnToWaitingList(@RequestParam(name = "visitorId") long visitorId,
+									  @RequestParam(name = "appointmentId") long appointmentId,
+									  @RequestParam(name = "registryId") long registryId,
+									  Model model) {
+		Registry registry = registryService.getRegistryById(registryId);
 		registry.setStatus(1);
 		registryService.save(registry);
 		model.addAttribute("visitor", registryService.getVisitorById(visitorId));
@@ -58,8 +62,11 @@ public class CheckController {
 	}
 
 	@PostMapping("/finishCheck")
-	public String finishCheck(@RequestParam(name = "visitorId") long visitorId, @RequestParam(name = "appointmentId") long appointmentId, Model model) {
-		Registry registry = registryService.getRegistryById(visitorId);
+	public String finishCheck(@RequestParam(name = "visitorId") long visitorId,
+							  @RequestParam(name = "appointmentId") long appointmentId,
+							  @RequestParam(name = "registryId") long registryId,
+							  Model model) {
+		Registry registry = registryService.getRegistryById(registryId);
 		registry.setStatus(4);
 		registryService.save(registry);
 		model.addAttribute("visitor", registryService.getVisitorById(visitorId));

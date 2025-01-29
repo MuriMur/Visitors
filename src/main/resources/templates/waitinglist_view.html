@@ -46,9 +46,9 @@
             <td th:text="${registry.order}"></td>
             <td>
                 <form method="post" th:action="@{/callPatient}">
+                    <input type="hidden" id="registryId" name="registryId" th:value="${registry.id}">
                     <input type="hidden" id="visitorId" name="visitorId" th:value="${registry.visitorId}">
                     <input type="hidden" id="appointmentId" name="appointmentId" th:value="${registry.appointmentId}">
-                    <input type="hidden" id="registryId" name="registryId" th:value="${registry.id}">
                     <input type="submit" value="Call" sec:authorize="${hasRole('Personnel')}">
                 </form>
             </td>
