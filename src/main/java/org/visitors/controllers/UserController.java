@@ -41,10 +41,10 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Long id, Model model) {
+    public RedirectView deleteUser(@PathVariable Long id, Model model) {
         userService.userDelete(id);
         model.addAttribute("users", userService.listAllUsers());
-        return "users_view";
+        return new RedirectView("/users");
     }
 
     @GetMapping("/load/{id}")

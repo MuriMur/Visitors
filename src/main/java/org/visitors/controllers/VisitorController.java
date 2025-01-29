@@ -48,10 +48,10 @@ public class VisitorController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteVisitor(@PathVariable Long id, Model model) {
+    public RedirectView deleteVisitor(@PathVariable Long id, Model model) {
         visitorService.visitorDelete(id);
         model.addAttribute("visitors", visitorService.listAllVisitors());
-        return "visitors_view";
+        return new RedirectView("/visitors");
     }
 
     @GetMapping("/load/{id}")

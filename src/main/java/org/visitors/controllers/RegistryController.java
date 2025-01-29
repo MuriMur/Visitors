@@ -59,10 +59,10 @@ public class RegistryController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteRegistry(@PathVariable Long id, Model model) {
+	public RedirectView deleteRegistry(@PathVariable Long id, Model model) {
 		registryService.registryDelete(id);
 		model.addAttribute("registries", registryService.listAllRegistries());
-		return "registries_view";
+		return new RedirectView("/registries");
 	}
 	
 	@GetMapping("/load/{id}")

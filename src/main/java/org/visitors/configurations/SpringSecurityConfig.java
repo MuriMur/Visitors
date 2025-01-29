@@ -58,7 +58,8 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/registries/load/{registrieId}/**").hasAnyRole("Registrator", "System Administrator")
                                 .requestMatchers("/registries/visitor/**").hasAnyRole("Registrator", "System Administrator")
                                 .requestMatchers("/registries/delete/{registrieId}/**").hasAnyRole("Registrator", "System Administrator")
-                                
+                                .requestMatchers("/registries/delete").hasAnyRole("Registrator", "System Administrator")
+
                                 .requestMatchers("/waitinglist").permitAll()
                                 .requestMatchers("/callPatient").hasAnyRole("Personnel", "System Administrator")
                                 .requestMatchers("/callPatient/**").hasAnyRole("Personnel", "System Administrator")

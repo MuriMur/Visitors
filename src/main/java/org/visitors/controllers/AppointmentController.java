@@ -47,10 +47,10 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteAppointment(@PathVariable Long id, Model model) {
+	public RedirectView deleteAppointment(@PathVariable Long id, Model model) {
 		appointmentService.appointmentDelete(id);
 		model.addAttribute("appointments", appointmentService.listAllAppointments());
-		return "appointments_view";
+		return new RedirectView("/appointments");
 	}
 	
 	@GetMapping("/load/{id}")

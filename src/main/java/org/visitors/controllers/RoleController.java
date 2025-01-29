@@ -37,10 +37,10 @@ public class RoleController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteRole(@PathVariable Long id, Model model) {
+	public RedirectView deleteRole(@PathVariable Long id, Model model) {
 		roleService.roleDelete(id);
 		model.addAttribute("roles", roleService.listAllRoles());
-		return "roles_view";
+		return new RedirectView("/roles");
 	}
 	
 	@GetMapping("/load/{id}")
