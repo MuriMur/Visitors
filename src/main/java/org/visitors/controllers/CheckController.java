@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import org.visitors.models_and_repositories.registry.Registry;
 import org.visitors.services.*;
 
@@ -49,7 +50,7 @@ public class CheckController {
 		model.addAttribute("visitor", registryService.getVisitorById(visitorId));
 		model.addAttribute("appointment", registryService.getAppointmentById(appointmentId));
 		model.addAttribute("registry", registry);
-		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
+		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2 || r.getStatus() == 3).toArray());
 		model.addAttribute("visitorService", visitorService);
 		model.addAttribute("userService", userService);
 		model.addAttribute("appointmentService", appointmentService);
@@ -64,7 +65,7 @@ public class CheckController {
 		model.addAttribute("visitor", registryService.getVisitorById(visitorId));
 		model.addAttribute("appointment", registryService.getAppointmentById(appointmentId));
 		model.addAttribute("registry", registry);
-		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
+		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2 || r.getStatus() == 3).toArray());
 		model.addAttribute("visitorService", visitorService);
 		model.addAttribute("userService", userService);
 		model.addAttribute("appointmentService", appointmentService);
@@ -73,7 +74,7 @@ public class CheckController {
 
 	@GetMapping("/returnToWaitingList")
 	public String listAllRegistries(Model model) {
-		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
+		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2 || r.getStatus() == 3).toArray());
 		model.addAttribute("visitorService", visitorService);
 		model.addAttribute("userService", userService);
 		model.addAttribute("appointmentService", appointmentService);
@@ -82,7 +83,7 @@ public class CheckController {
 
 	@GetMapping("/finishCheck")
 	public String listAllRegistriesAfterFinishCheck(Model model) {
-		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2).toArray());
+		model.addAttribute("registries", registryService.listAllRegistries().stream().filter(r -> r.getStatus() == 1 || r.getStatus() == 2 || r.getStatus() == 3).toArray());
 		model.addAttribute("visitorService", visitorService);
 		model.addAttribute("userService", userService);
 		model.addAttribute("appointmentService", appointmentService);
